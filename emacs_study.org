@@ -1,6 +1,60 @@
 * emacs笔记
 
 ** TODO [#B] emacs查询操作
- -
+ - 查找操作
+#+BEGIN_SRC text
+C-s isearch-forward 向前开始递增查找操作
+C-r isearch-backward 向后开始递增查找
+#+END_SRC
+-  查找和替换操作
 
-** TODO [#B] test
+#+BEGIN_SRC text
+  // 一次把所有内容全部替换掉了
+  ESC --> x --> replace-string --> RETURN --> 输入要查找的字符串 --> RETURN --> 输入要替换的字符串
+  // 查找一个出现查找字符串的地方后，会询问是否进行改正
+  ESC % --> 输入要替换的字符串 --> SPACE / y (用新字符串替换查询字符串) --> DEL/n 不替换，前进到下一个位置 --> 退出查询替换操作
+#+END_SRC
+
+-  正则查找
+#+BEGIN_SRC text
+
+^ 匹配行首
+$ 匹配行尾
+. 匹配任意单个字符
+.* 匹配任意（0或以上）个字符
+\< 匹配单词的开头
+\> 匹配单词的结尾
+[] 匹配方括号中的任何一个字符与js[] 一样。
+
+ESC --> C-s -- RENTURN -- re-search-forward 向前查找一个正则表达式
+
+ESC -- C-r -- Renturn -- re-search-backward 向后查找一个正则表达式
+
+ESC -- C-s -- iserch-forward-regexp 向前递增查找一个递增正则表达式
+
+ESC-- isearch-backward-regexp 向后递增查找一个递增正则表达式
+
+query-replace-regexp 查询替换一个正则表达式
+replace-regexp 无条件地对一个正则表达式做全局性替换
+#+END_SRC
+
+** TODO [#B] emacs 使用编辑缓冲区和窗口
+-  新建/打开缓冲区 C-x b
+-  删除缓冲区 C-x k  kill-buffer
+- EXC -- x -- kill-some-buffers Emacs 将依次列出每个编辑缓冲区的名字，并询问是否要删除。
+-  编辑缓冲区的重新命名  EXC -- x -- rename-buffer
+-  只读缓冲区 C-x C-q 把编辑缓冲区设置成只读属性。在按一次C-x C-q 即可进行读写状态。（注意：并不会改变UNIX文件的权限）
+-  窗口的删除 M-x delete-window-on -- RETurn buffername -- return 删除某个特定编辑缓冲区上的全部窗口
+
+** 在文档中使用书签
+-  C-x r m (bookmark-set) 取个名称，设置书签名称。
+#+BEGIN_SRC text
+注意： 如果定义的书签名有重复的话，新的书签会替代旧书签，要给书签起一个独一无二的名字
+#+END_SRC
+-  C-x r b (bookmark-jump) 输入书签名，即可跳转到对应的书签位置。
+-  bookmark-rename 修改书名称
+-  bookmark-delete 删除书签名
+-  bookmark-bmenu-list 列出所有书签 C-x r l
+
+** Emacs 工作环境
+-  ESC x shell
